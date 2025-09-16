@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Lock",
+  "version": "1.0.0",
+  "description": "Lock yourself to specific tabs for focused productivity",
+  "permissions": [
+    "tabs",
+    "storage",
+    "alarms",
+    "webNavigation",
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Tab Lock"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png", 
+    "128": "icon128.png"
+  }
+}
