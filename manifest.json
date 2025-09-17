@@ -1,25 +1,24 @@
 {
   "manifest_version": 3,
-  "name": "Tab Lock",
+  "name": "Kokushibo Tab Lock",
   "version": "1.0.0",
-  "description": "Lock yourself to specific tabs for focused productivity",
+  "description": "Stay focused under Kokushibo’s gaze. Lock tabs for productivity.",
   "permissions": [
     "tabs",
     "storage",
     "alarms",
-    "webNavigation",
-    "activeTab"
+    "webNavigation"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Tab Lock"
+    "default_title": "Kokushibo Tab Lock"
   },
   "icons": {
     "16": "icon16.png",
-    "48": "icon48.png", 
+    "48": "icon48.png",
     "128": "icon128.png"
   }
 }

@@ -1,204 +1,137 @@
-// DOM elements
-const statusSection = document.getElementById('statusSection');
-const lockSection = document.getElementById('lockSection');
-const activeLockSection = document.getElementById('activeLockSection');
-const emergencySection = document.getElementById('emergencySection');
-const timeRemaining = document.getElementById('timeRemaining');
-const statusBadge = document.getElementById('statusBadge');
-const minutesInput = document.getElementById('minutesInput');
-const lockButton = document.getElementById('lockButton');
-const unlockButton = document.getElementById('unlockButton');
-const passwordInput = document.getElementById('passwordInput');
-const emergencyUnlockButton = document.getElementById('emergencyUnlockButton');
+document.addEventListener('DOMContentLoaded', () => {
+    const setupView = document.getElementById('setupView');
+    const activeView = document.getElementById('activeView');
+    const completedView = document.getElementById('completedView');
 
-// Emergency password (in production, this could be user-configurable)
-const EMERGENCY_PASSWORD = 'unlock123';
+    const minutesInput = document.getElementById('minutesInput');
+    const passwordInput = document.getElementById('passwordInput');
+    const lockButton = document.getElementById('lockButton');
 
-// Initialize popup
-document.addEventListener('DOMContentLoaded', async () => {
-    await updateUI();
-    setupEventListeners();
-    
-    // Update UI every second when locked
-    setInterval(updateUI, 1000);
-});
+    const timeRemaining = document.getElementById('timeRemaining');
+    const unlockPasswordInput = document.getElementById('unlockPasswordInput');
+    const unlockButton = document.getElementById('unlockButton');
+    const newSessionButton = document.getElementById('newSessionButton');
 
-function setupEventListeners() {
-    lockButton.addEventListener('click', handleLock);
-    unlockButton.addEventListener('click', handleUnlock);
-    emergencyUnlockButton.addEventListener('click', handleEmergencyUnlock);
-    
-    // Enter key support
-    minutesInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') handleLock();
-    });
-    
-    passwordInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') handleEmergencyUnlock();
-    });
-}
+    const bgSetup = document.getElementById('bgSetup');
+    const bgActive = document.getElementById('bgActive');
 
-async function updateUI() {
-    try {
-        const result = await chrome.storage.local.get(['lockState', 'lockEndTime', 'lockedTabs']);
-        const lockState = result.lockState;
-        const lockEndTime = result.lockEndTime;
-        
-        if (lockState === 'active' && lockEndTime) {
-            const now = Date.now();
-            const remaining = Math.max(0, lockEndTime - now);
-            
-            if (remaining > 0) {
-                showActiveLock(remaining);
-            } else {
-                showInactiveLock();
-            }
+    let timerInterval;
+
+    function switchView(view) {
+        setupView.classList.add('hidden');
+        activeView.classList.add('hidden');
+        completedView.classList.add('hidden');
+        view.classList.remove('hidden');
+
+        if (view === activeView) {
+            bgSetup.classList.add('hidden');
+            bgActive.classList.remove('hidden');
         } else {
-            showInactiveLock();
+            bgActive.classList.add('hidden');
+            bgSetup.classList.remove('hidden');
         }
-    } catch (error) {
-        console.error('Error updating UI:', error);
-        showInactiveLock();
     }
-}
 
-function showActiveLock(remainingMs) {
-    const minutes = Math.floor(remainingMs / 60000);
-    const seconds = Math.floor((remainingMs % 60000) / 1000);
-    
-    timeRemaining.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    statusBadge.textContent = 'Active';
-    statusBadge.className = 'status-badge';
-    
-    lockSection.classList.add('hidden');
-    activeLockSection.classList.remove('hidden');
-    emergencySection.classList.remove('hidden');
-    
-    // Add fade-in animation
-    if (!activeLockSection.classList.contains('fade-in')) {
-        activeLockSection.classList.add('fade-in');
-        emergencySection.classList.add('fade-in');
+    function startTimer(endTime) {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            const left = Math.max(0, endTime - Date.now());
+            const m = Math.floor(left / 60000);
+            const s = Math.floor((left / 1000) % 60);
+            timeRemaining.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            if (left <= 0) {
+                clearInterval(timerInterval);
+                switchView(completedView);
+            }
+        }, 1000);
     }
-}
 
-function showInactiveLock() {
-    timeRemaining.textContent = '--:--';
-    statusBadge.textContent = 'Inactive';
-    statusBadge.className = 'status-badge inactive';
-    
-    lockSection.classList.remove('hidden');
-    activeLockSection.classList.add('hidden');
-    emergencySection.classList.add('hidden');
-    
-    // Reset form
-    passwordInput.value = '';
-    
-    // Add fade-in animation
-    if (!lockSection.classList.contains('fade-in')) {
-        lockSection.classList.add('fade-in');
-    }
-}
+    lockButton.addEventListener('click', async () => {
+        const minutes = parseInt(minutesInput.value, 10);
+        const password = passwordInput.value;
 
-async function handleLock() {
-    const minutes = parseInt(minutesInput.value);
-    
-    if (!minutes || minutes < 1 || minutes > 480) {
-        alert('Please enter a valid duration between 1 and 480 minutes.');
-        return;
-    }
-    
-    try {
-        lockButton.disabled = true;
-        lockButton.textContent = 'Locking...';
-        
-        // Get current tabs
+        if (isNaN(minutes) || minutes < 1 || minutes > 480) {
+            alert('Duration must be 1–480 minutes.');
+            return;
+        }
+        if (password.length < 4) {
+            alert('Password must be at least 4 characters.');
+            return;
+        }
+
         const tabs = await chrome.tabs.query({ currentWindow: true });
-        const activeTab = await chrome.tabs.query({ active: true, currentWindow: true });
-        
-        if (tabs.length === 0 || activeTab.length === 0) {
-            throw new Error('No tabs found');
-        }
-        
-        const lockData = {
-            lockState: 'active',
-            lockEndTime: Date.now() + (minutes * 60 * 1000),
-            lockedTabs: tabs.map(tab => ({
-                id: tab.id,
-                url: tab.url,
-                title: tab.title
-            })),
-            activeTabId: activeTab[0].id,
-            startTime: Date.now()
+        const activeTab = tabs.find(t => t.active);
+
+        const data = {
+            lockEndTime: Date.now() + minutes * 60000,
+            password,
+            lockedTabs: tabs,
+            activeTabId: activeTab?.id
         };
-        
-        // Save lock state
-        await chrome.storage.local.set(lockData);
-        
-        // Notify background script
-        await chrome.runtime.sendMessage({ 
-            type: 'START_LOCK', 
-            data: lockData 
+
+        chrome.runtime.sendMessage({ type: 'START_LOCK', data });
+        switchView(activeView);
+        startTimer(data.lockEndTime);
+    });
+
+    unlockButton.addEventListener('click', () => {
+        const pwd = unlockPasswordInput.value;
+        if (!pwd) return alert('Enter code.');
+        chrome.runtime.sendMessage({ type: 'TRY_UNLOCK', password: pwd }, (res) => {
+            if (res?.success) {
+                clearInterval(timerInterval);
+                switchView(completedView);
+            } else {
+                alert('Incorrect code.');
+            }
         });
-        
-        // Update UI
-        await updateUI();
-        
-    } catch (error) {
-        console.error('Error starting lock:', error);
-        alert('Failed to start lock. Please try again.');
-    } finally {
-        lockButton.disabled = false;
-        lockButton.innerHTML = `
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="m7 11 V 7 a 5 5 0 0 1 10 0 v 4"/>
-            </svg>
-            Lock In
-        `;
-    }
-}
+    });
 
-async function handleUnlock() {
-    if (!confirm('Are you sure you want to end the lock early?')) {
-        return;
-    }
-    
-    await endLock();
-}
-
-async function handleEmergencyUnlock() {
-    const password = passwordInput.value.trim();
-    
-    if (password === EMERGENCY_PASSWORD) {
-        await endLock();
+    newSessionButton.addEventListener('click', () => {
+        minutesInput.value = 30;
         passwordInput.value = '';
-    } else {
-        alert('Incorrect password. The emergency password is "unlock123".');
-        passwordInput.value = '';
-        passwordInput.focus();
-    }
-}
+        unlockPasswordInput.value = '';
+        timeRemaining.textContent = '--:--';
+        switchView(setupView);
+    });
 
-async function endLock() {
-    try {
-        // Clear storage
-        await chrome.storage.local.remove(['lockState', 'lockEndTime', 'lockedTabs', 'activeTabId', 'startTime']);
-        
-        // Notify background script
-        await chrome.runtime.sendMessage({ type: 'END_LOCK' });
-        
-        // Update UI
-        await updateUI();
-        
-    } catch (error) {
-        console.error('Error ending lock:', error);
-        alert('Failed to end lock. Please try again.');
-    }
-}
+    chrome.runtime.onMessage.addListener((msg) => {
+        if (msg.type === 'LOCK_EXPIRED') {
+            clearInterval(timerInterval);
+            switchView(completedView);
+        }
+    });
 
-// Handle messages from background script
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === 'LOCK_EXPIRED') {
-        updateUI();
+    switchView(setupView);
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const timeRemaining = document.getElementById("timeRemaining");
+
+    let timerInterval;
+
+    function startTimer(endTime) {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            const left = Math.max(0, endTime - Date.now());
+            const m = Math.floor(left / 60000);
+            const s = Math.floor((left / 1000) % 60);
+            timeRemaining.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+
+            if (left <= 0) {
+                clearInterval(timerInterval);
+                chrome.runtime.sendMessage({ type: "LOCK_EXPIRED" });
+            }
+        }, 1000);
     }
+
+    // When popup loads, check if a lock is running
+    chrome.runtime.sendMessage({ type: "GET_REMAINING" }, (res) => {
+        if (res.remaining > 0) {
+            const endTime = Date.now() + res.remaining;
+            startTimer(endTime);
+            // show active view automatically
+            document.getElementById("setupView").classList.add("hidden");
+            document.getElementById("activeView").classList.remove("hidden");
+        }
+    });
 });
