@@ -1,58 +1,95 @@
-#  Tab lock :-
+<p align="center">
+  <img src="icon128.png" alt="Lock-In Logo" width="120" />
+</p>
 
-A lightweight Chrome extension that helps you stay focused by locking your browser for a set amount of time.  
+<h1 align="center">🔒 Lock-In</h1>
+
+
+A lightweight Chrome extension that helps you stay focused by locking your browser for a set amount of time.
 No distractions, no excuses — just deep work.
 
----
+✨ Features
 
-## ✨ Features
+Custom Focus Sessions → Set a timer anywhere from 1 to 480 minutes.
 
-- **Custom Focus Sessions** → Set a timer anywhere from 1 to 480 minutes.  
-- **Password Protection** → End sessions early only if you know the password you set.  
-- **Emergency Unlock** → An escape hatch for critical situations.  
-- **Minimal, Clean UI** → Status badges and background changes keep things clear.  
-- **Session Persistence** → Lock continues even if you restart Chrome.  
+Password Protection → End sessions early only if you know the password you set.
 
----
+Emergency Unlock → Escape hatch for critical situations.
 
-## 🚀 Installation
+Immersive UI → Kokushibo-inspired design with glowing buttons and backgrounds.
 
-Since Tab Lock isn’t on the Chrome Web Store, you’ll need to load it manually:
+Session Persistence → Timer continues running even if you close the popup or restart Chrome.
 
-1. Download or clone this repository.  
-2. Open Chrome and go to `chrome://extensions`.  
-3. Enable **Developer Mode** (top-right toggle).  
-4. Click **Load unpacked** and select the project folder.  
+🚀 Installation
 
-You should now see the Tab Lock icon in your extensions bar.
+Since Lock-In isn’t on the Chrome Web Store, you’ll need to load it manually:
 
----
+Clone this repository or download it as a ZIP:
 
-## 💡 Usage
+git clone https://github.com/mohithkotian/lock-in.git
 
-1. Click the Tab Lock icon in your toolbar.  
-2. Enter how many minutes you want to focus.  
-3. Set a password for unlocking early.  
-4. Press **Start Focus Lock**.  
 
-While the session is active:  
-- A live countdown timer is displayed.  
-- Tabs are restricted.  
-- You can only stop early with your password.  
+Open Chrome and go to chrome://extensions/.
 
-When the timer reaches zero, the lock ends automatically.
+Enable Developer Mode (toggle in the top-right).
 
----
+Click Load unpacked and select the project folder.
 
-## ⚙️ Technical Details
+You should now see the Lock-In icon in your extensions bar.
 
-**Built With**  
-- HTML, CSS, JavaScript (ES6)  
-- Chrome Extension API (Manifest V3)  
+💡 Usage
 
-**How It Works**  
-- The **popup** handles input and shows the countdown.  
-- The **background service worker** enforces the lock, listens for tab events, and uses `chrome.alarms` for timing.  
-- All session data (end time, password, status) is stored with `chrome.storage`, so it persists across restarts.  
+Click the Lock-In icon in your toolbar.
 
----
+Enter how many minutes you want to focus.
+
+Set a password for unlocking early.
+
+Press Begin Focus.
+
+While the session is active:
+
+A countdown timer runs in the background.
+
+Tabs are locked (switching/closing restricted).
+
+You can only stop early by entering your password.
+
+When the timer ends, the lock is automatically lifted.
+
+⚙️ Technical Details
+
+Built With
+
+HTML, CSS, JavaScript (ES6)
+
+Chrome Extensions API (Manifest V3)
+
+How It Works
+
+The popup handles session setup and displays the countdown.
+
+The background service worker enforces the lock, monitors tabs, and uses chrome.alarms for timing.
+
+Session data (end time, password, active tab) is stored with chrome.storage.local, so it persists even if you restart Chrome.
+
+📸 Screenshots
+Setup
+<img width="504" height="746" alt="image" src="https://github.com/user-attachments/assets/3256e3fd-b106-48a4-b8e1-7d52fe655bcf" />
+
+Start a session with duration + password.
+
+Active Session
+
+Focus mode activated — Kokushibo’s eyes keep watch.
+<img width="497" height="746" alt="image" src="https://github.com/user-attachments/assets/dbcdd64c-c1dd-4773-afe6-263e32c906d7" />
+
+Completion
+
+When the timer ends, Lock-In frees your tabs.
+<img width="495" height="748" alt="image" src="https://github.com/user-attachments/assets/9c7fb6c2-ea95-4f38-ba44-1108ef1e988f" />
+
+
+📝 License
+
+MIT License © 2025 mohithkotian
