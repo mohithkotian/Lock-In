@@ -4,6 +4,9 @@
 
 <h1 align="center"><b>🔒 Lock-In</b>b></h1>
 
+<h1 align="center" style="color:#ff007f;text-shadow:0 0 10px #ff4da6;">
+✨ Lock-In ✨
+</h1>
 
 A lightweight Chrome extension that helps you stay focused by locking your browser for a set amount of time.
 No distractions, no excuses — just deep work.
@@ -91,9 +94,8 @@ When the timer ends, Lock-In frees your tabs.
 <img width="495" height="748" alt="image" src="https://github.com/user-attachments/assets/9c7fb6c2-ea95-4f38-ba44-1108ef1e988f" />
 
 
-<b>📝 License</b>
-
 ## 📝 License  
 
-MIT License © 2025 <sub>[mohithkotian](https://github.com/mohithkotian)</sub>  
+MIT License © 2025 [![mohithkotian](https://img.shields.io/badge/Author-mohithkotian-blue?style=flat-square&logo=github)](https://github.com/mohithkotian)
+  
 
