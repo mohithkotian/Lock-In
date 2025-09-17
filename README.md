@@ -1,101 +1,130 @@
-<p align="center">
-  <img src="icon128.png" alt="Lock-In Logo" width="120" />
-</p>
+# 🔒 **L O C K - I N** 🔒
+### *`>>> ENTER THE ZONE OF ABSOLUTE FOCUS <<<`*
 
-<h1 align="center"><b>🔒 Lock-In</b>b></h1>
+<div align="center">
 
-<h1 align="center" style="color:#ff007f;text-shadow:0 0 10px #ff4da6;">
-✨ Lock-In ✨
-</h1>
+**━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━**
 
-A lightweight Chrome extension that helps you stay focused by locking your browser for a set amount of time.
-No distractions, no excuses — just deep work.
+*A lightweight Chrome extension that helps you stay focused by locking your browser for a set amount of time.*
 
-<b>✨ Features</b>
+**No distractions. No excuses. Just pure, uninterrupted deep work.**
 
-Custom Focus Sessions → Set a timer anywhere from 1 to 480 minutes.
+**━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━**
 
-Password Protection → End sessions early only if you know the password you set.
+</div>
 
-Emergency Unlock → Escape hatch for critical situations.
+---
 
-Immersive UI → Kokushibo-inspired design with glowing buttons and backgrounds.
+## ✨ **F E A T U R E S** ⚡
 
-Session Persistence → Timer continues running even if you close the popup or restart Chrome.
+### 🎯 **`Custom Focus Sessions`**
+> Set a timer anywhere from **1 to 480 minutes** — from quick sprints to marathon deep work sessions.
 
-<b>🚀 Installation</b>
+### 🔐 **`Password Protection`** 
+> End sessions early only if you know the secret password you set. Your future self will thank you.
 
-Since Lock-In isn’t on the Chrome Web Store, you’ll need to load it manually:
+### 🚨 **`Emergency Unlock`**
+> Life happens. Critical situations get an escape hatch when you absolutely need it.
 
-Clone this repository or download it as a ZIP:
+### 👁️ **`Immersive Kokushibo UI`**
+> Experience focus like never before with our signature glowing buttons and hypnotic backgrounds.
 
+### 💾 **`Session Persistence`**
+> Timer keeps running even if you close the popup or restart Chrome. No cheating the system.
+
+---
+
+## 🚀 **I N S T A L L A T I O N** 🔧
+
+> **Note:** Lock-In isn't on the Chrome Web Store yet, so you'll need to load it manually like a true developer.
+
+### **Step 1: Get the Code**
+```bash
 git clone https://github.com/mohithkotian/lock-in.git
+```
+*Or download as ZIP if you prefer the easy route*
 
+### **Step 2: Chrome Extensions Setup**
+1. Open Chrome and navigate to `chrome://extensions/`
+2. Enable **Developer Mode** (toggle in the top-right)
+3. Click **"Load unpacked"** and select the project folder
+4. 🎉 **Lock-In icon should now appear in your extensions bar!**
 
-Open Chrome and go to chrome://extensions/.
+---
 
-Enable Developer Mode (toggle in the top-right).
+## 💡 **U S A G E   G U I D E** 📋
 
-Click Load unpacked and select the project folder.
+### **🔥 Starting Your Focus Session**
+1. **Click** the Lock-In icon in your toolbar
+2. **Enter** how many minutes you want to focus (1-480 minutes)
+3. **Set** a password for emergency unlocking
+4. **Press** `Begin Focus` and enter the zone
 
-You should now see the Lock-In icon in your extensions bar.
+### **⚔️ During Active Session**
+- ⏱️ Countdown timer runs in the background
+- 🔒 Tabs are locked (switching/closing restricted)
+- 🛡️ Only way out is through your password or timer completion
+- 👁️ Kokushibo's eyes keep watch over your productivity
 
-<b>💡 Usage</b>
+### **🏆 Session Complete**
+When the timer hits zero, Lock-In automatically lifts the restrictions. You're free to browse again!
 
-Click the Lock-In icon in your toolbar.
+---
 
-Enter how many minutes you want to focus.
+## ⚙️ **T E C H N I C A L   D E T A I L S** 🛠️
 
-Set a password for unlocking early.
+### **🏗️ Built With:**
+- **HTML/CSS/JavaScript (ES6)** — The holy trinity of web development
+- **Chrome Extensions API (Manifest V3)** — Latest and greatest
+- **Pure Vanilla JS** — No frameworks, no bloat, just raw performance
 
-Press Begin Focus.
+### **🧠 How It Works:**
+```
+📱 Popup Interface ──→ Handles session setup & countdown display
+🔧 Background Worker ──→ Enforces locks, monitors tabs, manages timing
+💾 Chrome Storage ──→ Persists session data across browser restarts
+⏰ Chrome Alarms ──→ Precision timing that survives everything
+```
 
-While the session is active:
+**Session data includes:** End time, password hash, active tab info — all stored locally for maximum privacy.
 
-A countdown timer runs in the background.
+---
 
-Tabs are locked (switching/closing restricted).
+## 📸 **S C R E E N S H O T S** 📱
 
-You can only stop early by entering your password.
+### **🎮 Setup Interface**
+*Configure your focus session with military precision*
 
-When the timer ends, the lock is automatically lifted.
+### **👁️ Active Session Mode** 
+*Focus mode activated — Kokushibo's watchful eyes ensure maximum productivity*
 
-<b>⚙️ Technical Details</b>
+### **🏁 Session Completion**
+*Victory! Timer complete, restrictions lifted, productivity achieved*
 
-Built With
+---
 
-HTML, CSS, JavaScript (ES6)
+## 📝 **L I C E N S E** ⚖️
 
-Chrome Extensions API (Manifest V3)
+```
+MIT License © 2025
+```
 
-How It Works
+**Free to use, modify, and distribute. Because focus should be accessible to everyone.**
 
-The popup handles session setup and displays the countdown.
+---
 
-The background service worker enforces the lock, monitors tabs, and uses chrome.alarms for timing.
+<div align="center">
 
-Session data (end time, password, active tab) is stored with chrome.storage.local, so it persists even if you restart Chrome.
+**━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━**
 
-</b>📸 Screenshots</b>
+### 🔥 **Created with obsessive attention to detail by** 🔥
 
-<b>Setup</b>
-<img width="504" height="746" alt="image" src="https://github.com/user-attachments/assets/3256e3fd-b106-48a4-b8e1-7d52fe655bcf" />
+[![mohithkotian](https://img.shields.io/badge/Author-mohithkotian-blue?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mohithkotian)
 
-Start a session with duration + password.
+**━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━**
 
-<b>Active Session</b>
+*"The path to mastery requires absolute focus. Lock-In is your weapon."*
 
-Focus mode activated — Kokushibo’s eyes keep watch.
-<img width="497" height="746" alt="image" src="https://github.com/user-attachments/assets/dbcdd64c-c1dd-4773-afe6-263e32c906d7" />
+**━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━**
 
-<b>Completion</b>
-
-When the timer ends, Lock-In frees your tabs.
-<img width="495" height="748" alt="image" src="https://github.com/user-attachments/assets/9c7fb6c2-ea95-4f38-ba44-1108ef1e988f" />
-
-
-## 📝 License  
-
-MIT License © 2025 [![mohithkotian](https://img.shields.io/badge/Author-mohithkotian-blue?style=flat-square&logo=github)](https://github.com/mohithkotian)
-  
-
+</div>
