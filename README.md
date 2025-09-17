@@ -2,13 +2,13 @@
   <img src="icon128.png" alt="Lock-In Logo" width="120" />
 </p>
 
-<h1 align="center">🔒 Lock-In</h1>
+<h1 align="center"><b>🔒 Lock-In</b>b></h1>
 
 
 A lightweight Chrome extension that helps you stay focused by locking your browser for a set amount of time.
 No distractions, no excuses — just deep work.
 
-✨ Features
+<b>✨ Features</b>
 
 Custom Focus Sessions → Set a timer anywhere from 1 to 480 minutes.
 
@@ -20,7 +20,7 @@ Immersive UI → Kokushibo-inspired design with glowing buttons and backgrounds.
 
 Session Persistence → Timer continues running even if you close the popup or restart Chrome.
 
-🚀 Installation
+<b>🚀 Installation</b>
 
 Since Lock-In isn’t on the Chrome Web Store, you’ll need to load it manually:
 
@@ -37,7 +37,7 @@ Click Load unpacked and select the project folder.
 
 You should now see the Lock-In icon in your extensions bar.
 
-💡 Usage
+<b>💡 Usage</b>
 
 Click the Lock-In icon in your toolbar.
 
@@ -57,7 +57,7 @@ You can only stop early by entering your password.
 
 When the timer ends, the lock is automatically lifted.
 
-⚙️ Technical Details
+<b>⚙️ Technical Details</b>
 
 Built With
 
@@ -73,23 +73,27 @@ The background service worker enforces the lock, monitors tabs, and uses chrome.
 
 Session data (end time, password, active tab) is stored with chrome.storage.local, so it persists even if you restart Chrome.
 
-📸 Screenshots
-Setup
+</b>📸 Screenshots</b>
+
+<b>Setup</b>
 <img width="504" height="746" alt="image" src="https://github.com/user-attachments/assets/3256e3fd-b106-48a4-b8e1-7d52fe655bcf" />
 
 Start a session with duration + password.
 
-Active Session
+<b>Active Session</b>
 
 Focus mode activated — Kokushibo’s eyes keep watch.
 <img width="497" height="746" alt="image" src="https://github.com/user-attachments/assets/dbcdd64c-c1dd-4773-afe6-263e32c906d7" />
 
-Completion
+<b>Completion</b>
 
 When the timer ends, Lock-In frees your tabs.
 <img width="495" height="748" alt="image" src="https://github.com/user-attachments/assets/9c7fb6c2-ea95-4f38-ba44-1108ef1e988f" />
 
 
-📝 License
+<b>📝 License</b>
 
-MIT License © 2025 mohithkotian
+## 📝 License  
+
+MIT License © 2025 <sub>[mohithkotian](https://github.com/mohithkotian)</sub>  
+
