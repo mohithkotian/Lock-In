@@ -93,13 +93,19 @@ When the timer hits zero, Lock-In automatically lifts the restrictions. You're f
 ## 📸 **S C R E E N S H O T S** 📱
 
 ### **🎮 Setup Interface**
-*Configure your focus session with military precision*
+<img src="screenshot1.png" alt="Lock-In Setup Interface" width="300"/>
+
+*Configure your focus session with military precision — Set your duration and security code*
 
 ### **👁️ Active Session Mode** 
-*Focus mode activated — Kokushibo's watchful eyes ensure maximum productivity*
+<img src="screenshot2.png" alt="Kokushibo's Eyes Active Session" width="300"/>
+
+*Focus mode activated — Kokushibo's piercing gaze watches over your productivity. The countdown has begun.*
 
 ### **🏁 Session Completion**
-*Victory! Timer complete, restrictions lifted, productivity achieved*
+<img src="screenshot3.png" alt="Focus Complete Screen" width="300"/>
+
+*Victory achieved! "You endured Kokushibo's gaze" — Timer complete, restrictions lifted, mastery unlocked.*
 
 ---
 
@@ -118,6 +124,8 @@ MIT License © 2025
 **━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━**
 
 ### 🔥 **Created with obsessive attention to detail by** 🔥
+
+<img src="creator-icon.png" alt="Creator" width="80" style="border-radius: 50%; border: 2px solid #ff0066;"/>
 
 [![mohithkotian](https://img.shields.io/badge/Author-mohithkotian-blue?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mohithkotian)
 
