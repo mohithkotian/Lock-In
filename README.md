@@ -101,7 +101,8 @@ When the timer hits zero, Lock-In automatically lifts the restrictions. You're f
 
 ### **👁️ Active Session Mode** 
 
-<img width="492" height="752" alt="image" src="https://github.com/user-attachments/assets/47249610-d70e-4c40-9ab3-4862a4a6f4a4" />
+<img width="497" height="746" alt="Screenshot 2025-09-17 152855" src="https://github.com/user-attachments/assets/eec1f109-4916-4fc4-b70a-bc3a85e1c0e2" />
+
 
 *Focus mode activated — Kokushibo's piercing gaze watches over your productivity. The countdown has begun.*
 
